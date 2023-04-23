@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.shop</groupId>
-	<artifactId>online-shop</artifactId>
+	<artifactId>shopping-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>online-shop</name>
+	<name>shopping-app</name>
 	<packaging>jar</packaging>
 	<description>Online Ecommerce app</description>
 	<properties>

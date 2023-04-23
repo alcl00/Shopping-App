@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class CustomerService {
@@ -32,28 +34,31 @@ public class CustomerService {
 	}
 	
 	@Transactional
-	public void updateCustomer(Long customerId, String firstName, String lastName, String address, String city, String zipCode) {
+	public void updateCustomer(@PathVariable("customerID") Long customerId, 
+			@RequestBody Customer customer) {
 		
-		Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new IllegalStateException("Customer not found"));
+		System.out.println("New customer info: " + customer);
 		
-		if(firstName != null && firstName.length() > 0 && !Objects.equals(customer.getFirstName(), firstName)) {
-			customer.setFirstName(firstName);
+		Customer customerToUpdate = customerRepository.findById(customerId).orElseThrow(() -> new IllegalStateException("Customer not found"));
+		
+		if(customer.getFirstName() != null && customer.getFirstName().length() > 0 && !Objects.equals(customerToUpdate.getFirstName(), customer.getFirstName())) {
+			customerToUpdate.setFirstName(customer.getFirstName());
 		}
 		
-		if(lastName != null && lastName.length() > 0 && !Objects.equals(customer.getLastName(), lastName)) {
-			customer.setFirstName(lastName);
+		if(customer.getLastName() != null && customer.getLastName().length() > 0 && !Objects.equals(customerToUpdate.getLastName(), customer.getLastName())) {
+			customerToUpdate.setLastName(customer.getLastName());
 		}
 		
-		if(address != null && address.length() > 0 && !Objects.equals(customer.getAddress(), address)) {
-			customer.setAddress(address);
+		if(customer.getAddress() != null && customer.getAddress().length() > 0 && !Objects.equals(customerToUpdate.getAddress(), customer.getAddress())) {
+			customerToUpdate.setAddress(customer.getAddress());
 		}
 		
-		if(city != null && city.length() > 0 && !Objects.equals(customer.getCity(), city)) {
-			customer.setCity(city);
+		if(customer.getCity() != null && customer.getCity().length() > 0 && !Objects.equals(customerToUpdate.getCity(), customer.getCity())) {
+			customerToUpdate.setCity(customer.getCity());
 		}
 		
-		if(zipCode != null && zipCode.length() > 0 && !Objects.equals(customer.getZipCode(), zipCode)) {
-			customer.setZipCode(zipCode);
+		if(customer.getZipCode() != null && customer.getZipCode().length() > 0 && !Objects.equals(customerToUpdate.getZipCode(), customer.getZipCode())) {
+			customerToUpdate.setZipCode(customer.getZipCode());
 		}
 		
 	}

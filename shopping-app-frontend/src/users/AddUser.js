@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function AddUser() {
 
@@ -43,7 +43,7 @@ export default function AddUser() {
             placeholder='Enter your first name' 
             name="firstName"
             value={firstName} 
-            onChange={(e) => onInputChange(e)}/>
+            onChange={(e) => onInputChange(e)} />
           </div>
           <div className='mb-3'>
             <label htmlFor='LastName' className='form-label' >
@@ -55,7 +55,7 @@ export default function AddUser() {
             placeholder='Enter your last name' 
             name="lastName" 
             value={lastName}
-            onChange={(e) => onInputChange(e)}/>
+            onChange={(e) => onInputChange(e)} />
           </div>
           <div className='mb-3'>
             <label htmlFor='Address' className='form-label'>
@@ -74,7 +74,13 @@ export default function AddUser() {
             <label htmlFor='City' className='form-label'>
               City
             </label>
-            <input type={"text"} className='form-control' placeholder='Enter your city' name="city"  value={city} onChange={(e) => onInputChange(e)} />
+            <input 
+            type={"text"} 
+            className='form-control' 
+            placeholder='Enter your city' 
+            name="city"  
+            value={city} 
+            onChange={(e) => onInputChange(e)} />
           </div>
 
           <div className='mb-3'>
@@ -87,10 +93,10 @@ export default function AddUser() {
             placeholder='Enter your zip code' 
             name="zipCode" 
             value={zipCode}
-            onChange={(e) => onInputChange(e)}/>
+            onChange={(e) => onInputChange(e)} />
           </div>
           <button type='submit' className='btn btn-outline-primary'>Submit</button>
-          <button type='submit' className='btn btn-outline-danger mx-2'>Cancel</button>
+          <Link className='btn btn-outline-danger mx-2' to="/">Cancel</Link>
           </form>
         </div>
       </div>
