@@ -38,21 +38,21 @@ public class SupplierService {
 	}
 	
 	@Transactional
-	public void updateSupplier(Long supplierId, String supplierName, String city, String zipCode) {
+	public void updateSupplier(Long supplierId, Supplier supplier) {
 		
-		Supplier supplier = supplierRepository.findById(supplierId).orElseThrow(() -> new IllegalStateException("Supplier not found"));
+		Supplier supplierToUpdate = supplierRepository.findById(supplierId).orElseThrow(() -> new IllegalStateException("Supplier not found"));
 		
 		
-		if(supplierName != null && supplierName.length() > 0 && !Objects.equals(supplierName, supplier.getSupplierName())) {
-			supplier.setSupplierName(supplierName);
+		if(supplier.getSupplierName() != null && supplier.getSupplierName().length() > 0 && !Objects.equals(supplierToUpdate.getSupplierName(), supplier.getSupplierName())) {
+			supplierToUpdate.setSupplierName(supplier.getSupplierName());
 		}
 		
-		if(city != null && city.length() > 0 && !Objects.equals(supplier.getCity(), city)) {
-			supplier.setCity(city);
+		if(supplier.getCity() != null && supplier.getCity().length() > 0 && !Objects.equals(supplierToUpdate.getCity(), supplier.getCity())) {
+			supplierToUpdate.setCity(supplier.getCity());
 		}
 		
-		if(zipCode != null && zipCode.length() > 0 && !Objects.equals(supplier.getZipCode(), zipCode)) {
-			supplier.setZipCode(zipCode);
+		if(supplier.getZipCode() != null && supplier.getZipCode().length() > 0 && !Objects.equals(supplierToUpdate.getZipCode(), supplier.getZipCode())) {
+			supplierToUpdate.setZipCode(supplier.getZipCode());
 		}
 	}
 	

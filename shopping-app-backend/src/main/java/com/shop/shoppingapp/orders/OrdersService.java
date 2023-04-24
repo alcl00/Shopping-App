@@ -1,6 +1,5 @@
 package com.shop.shoppingapp.orders;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -70,27 +69,24 @@ public class OrdersService {
 	
 	@Transactional
 	public void updateOrder(Long orderId,
-			LocalDate orderDate, 
-			LocalDate shipDate, 
-			PaymentMethod paymentMethod, 
-			String CCN) {
+			Orders order) {
 		
-		Orders order = ordersRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Order with ID: " + orderId + " not found"));
+		Orders orderToUpdate = ordersRepository.findById(orderId).orElseThrow(() -> new IllegalStateException("Order with ID: " + orderId + " not found"));
 		
-		if(orderDate != null && !Objects.equals(orderDate, order.getOrderDate())) {
-			order.setOrderDate(orderDate);
+		if(order.getOrderDate() != null && !Objects.equals(orderToUpdate.getOrderDate(), order.getOrderDate())) {
+			orderToUpdate.setOrderDate(order.getOrderDate());
 		}
 		
-		if(shipDate != null && !Objects.equals(shipDate, order.getShipDate())) {
-			order.setShipDate(shipDate);
+		if(order.getShipDate() != null && !Objects.equals(orderToUpdate.getShipDate(), order.getShipDate())) {
+			orderToUpdate.setShipDate(order.getShipDate());
 		}
 		
-		if(paymentMethod != null && !Objects.equals(paymentMethod, order.getPaymentMethod())) {
-			order.setPaymentMethod(paymentMethod);
+		if(order.getPaymentMethod() != null && !Objects.equals(orderToUpdate.getPaymentMethod(), order.getPaymentMethod())) {
+			orderToUpdate.setPaymentMethod(order.getPaymentMethod());
 		}
 		
-		if(CCN != null && CCN.length() > 0 && !Objects.equals(CCN, order.getCCN())) {
-			order.setCCN(CCN);
+		if(order.getCCN() != null && order.getCCN().length() > 0 && !Objects.equals(orderToUpdate.getCCN(), order.getCCN())) {
+			orderToUpdate.setCCN(order.getCCN());
 		}
 	}
 }

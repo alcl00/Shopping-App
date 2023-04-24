@@ -1,5 +1,6 @@
 package com.shop.shoppingapp.rating;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -82,13 +83,13 @@ public class RatingService {
 	
 	@Transactional
 	public void updateRating(Long ratingId,
-							Integer rating) {
+							Rating rating) {
 		
 		Rating ratingToUpdate = ratingRepository.findById(ratingId).orElseThrow(() -> new IllegalStateException("Rating with ID: " + ratingId + "Not found"));
 		
-		System.out.println("Old rating: " + ratingToUpdate.getRating() + "\nNew Rating: " + rating);
-		if(rating != null && !Objects.equals(rating, ratingToUpdate.getRating())) {
-			ratingToUpdate.setRating(rating);
+		if(rating.getRating() != null && !Objects.equals(rating.getRating(), ratingToUpdate.getRating())) {
+			ratingToUpdate.setRating(rating.getRating());
+			ratingToUpdate.setRatingDate(LocalDate.now());
 		}
 	}
 }

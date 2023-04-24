@@ -3,6 +3,7 @@ package com.shop.shoppingapp.supplier;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping(path = "/api/supplier")
 public class SupplierController {
 	
@@ -47,10 +48,8 @@ public class SupplierController {
 	
 	@PutMapping("{supplierID}")
 	public void updateSupplier(@PathVariable("supplierID") Long id, 
-								@RequestParam(required = false) String supplierName, 
-								@RequestParam(required = false) String city, 
-								@RequestParam(required = false) String zipCode) {
-		supplierService.updateSupplier(id, supplierName, city, zipCode);
+								@RequestBody Supplier supplier) {
+		supplierService.updateSupplier(id, supplier);
 	}
 	
 	

@@ -85,29 +85,28 @@ public class ProductService {
 	
 	
 	@Transactional
-	public void updateProduct(String UPC, String productName, Double price, Integer amount,
-			Integer reorderLevel, String category) {
+	public void updateProduct(String UPC, Product product) {
 		
-		Product product = productRepository.findById(UPC).orElseThrow(() -> new IllegalStateException("Product with UPC :" + UPC + " not found"));
+		Product productToUpdate = productRepository.findById(UPC).orElseThrow(() -> new IllegalStateException("Product with UPC :" + UPC + " not found"));
 		
-		if(productName != null && productName.length() > 0 && !Objects.equals(productName, product.getProductName())) {
-			product.setProductName(productName);
+		if(product.getProductName() != null && product.getProductName().length() > 0 && !Objects.equals(productToUpdate.getProductName(), product.getProductName())) {
+			productToUpdate.setProductName(product.getProductName());
 		}
 		
-		if(price != null && !Objects.equals(price, product.getPrice())) {
-			product.setPrice(price);
+		if(product.getPrice() != null && !Objects.equals(productToUpdate.getPrice(), product.getPrice())) {
+			productToUpdate.setPrice(product.getPrice());
 		}
 		
-		if(amount != null && !Objects.equals(amount, product.getAmount())) {
-			product.setAmount(amount);
+		if(product.getAmount() != null && !Objects.equals(productToUpdate.getAmount(), product.getAmount())) {
+			productToUpdate.setAmount(product.getAmount());
 		}
 		
-		if(reorderLevel != null && !Objects.equals(reorderLevel, product.getReorderLevel())) {
-			product.setReorderLevel(reorderLevel);
+		if(product.getReorderLevel() != null && !Objects.equals(productToUpdate.getReorderLevel(), product.getReorderLevel())) {
+			productToUpdate.setReorderLevel(product.getReorderLevel());
 		}
 		
-		if(category != null && category.length() > 0 && !Objects.equals(category, product.getCategory())) {
-			product.setCategory(category);
+		if(product.getCategory() != null && product.getCategory().length() > 0 && !Objects.equals(productToUpdate.getCategory(), product.getCategory())) {
+			productToUpdate.setCategory(product.getCategory());
 		}
 		
 		//For future: change supplier
