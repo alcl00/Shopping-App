@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function EditUser() {
+export default function AddCustomer() {
 
   let navigate = useNavigate();
-
-  const {id} = useParams()
 
   const [customer, setCustomer] = useState({
     firstName: "",
@@ -23,26 +21,17 @@ export default function EditUser() {
     setCustomer({...customer, [e.target.name]: e.target.value});
   }
 
-  useEffect(() => {
-    loadCustomer()
-  }, [])
-
   const onSubmit= async (e)=>{
     e.preventDefault();
-    await axios.put(`http://localhost:8080/api/customer/${id}`, customer)
+    await axios.post("http://localhost:8080/api/customer", customer)
     navigate("/")
-  }
-
-  const loadCustomer = async() => {
-    const result = await axios.get(`http://localhost:8080/api/customer/${id}`)
-    setCustomer(result.data);
   }
 
   return (
     <div className='container'>
       <div className='row'>
         <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 mb-2 shadow'>
-          <h2 className='text-center m-4'>Edit Customer Info</h2>
+          <h2 className='text-center m-4'>Register Customer</h2>
           <form onSubmit={(e) => onSubmit(e)}>
           <div className='mb-3'>
             <label htmlFor='FirstName' className='form-label' >
