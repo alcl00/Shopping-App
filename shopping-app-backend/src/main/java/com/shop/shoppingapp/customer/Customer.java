@@ -124,5 +124,5 @@ public class Customer {
 			   ", city: \'" + city + "\'" +
 			   ", zipCode: \'" + zipCode + "\'}";
 	}
-	
+
 }

@@ -34,10 +34,8 @@ public class CustomerService {
 	}
 	
 	@Transactional
-	public void updateCustomer(@PathVariable("customerID") Long customerId, 
+	public void updateCustomer(@PathVariable("customerID") Long customerId,
 			@RequestBody Customer customer) {
-		
-		System.out.println("New customer info: " + customer);
 		
 		Customer customerToUpdate = customerRepository.findById(customerId).orElseThrow(() -> new IllegalStateException("Customer not found"));
 		
@@ -73,7 +71,7 @@ public class CustomerService {
 		
 		if(customerMaybe.isEmpty())
 		{
-			throw new IllegalStateException("Customer with id " + id + " not found");
+			throw new IllegalStateException("Customer with ID " + id + " does not exist");
 		}
 		
 		return customerMaybe.get();

@@ -46,7 +46,7 @@ public class CustomerController {
 	}
 	
 	@PutMapping(path = "{customerID}")
-	public void updateCustomer(@PathVariable("customerID") Long customerId, 
+	public void updateCustomer(@PathVariable("customerID") Long customerId,
 								@RequestBody Customer customer) {
 		customerService.updateCustomer(customerId, customer);
 	}
