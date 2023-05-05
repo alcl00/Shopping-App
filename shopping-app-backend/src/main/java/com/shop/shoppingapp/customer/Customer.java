@@ -7,6 +7,7 @@ import com.shop.shoppingapp.orders.Orders;
 import com.shop.shoppingapp.rating.Rating;
 import com.shop.shoppingapp.wish.Wish;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +16,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "customer")
@@ -24,13 +27,21 @@ public class Customer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "customerID")
 	private Long id;
+
 	@Column(name = "first_name")
+	@NotNull
 	private String firstName;
 	@Column(name = "last_name")
+	@NotNull
 	private String lastName;
+
+	@NotNull
 	private String address;
+
+	@NotNull
 	private String city;
 	@Column(name = "zip")
+	@NotNull
 	private String zipCode;
 	
 	@OneToMany(mappedBy = "customer")
