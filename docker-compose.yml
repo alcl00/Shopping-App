@@ -1,17 +1,7 @@
+
 services:
-  db:
-    container_name: mysql
-    image: mysql
-    environment:
-      MYSQL_DATABASE: shop
-      MYSQL_ROOT_PASSWORD: password
-    ports:
-      - "3306:3306"
+  server:
+    build: .
     restart: always
-
-networks:
-  db:
-    driver: bridge
-
-volumes:
-  db:
+    ports:
+      - 8080:8080
